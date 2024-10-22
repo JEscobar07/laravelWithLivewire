@@ -13,11 +13,12 @@ class Task extends Model
     // Define qué campos se pueden llenar automáticamente
     protected $fillable = [
         "name",
-        "description"
+        "description",
+        "user_id"
     ];
 
     public function user(): BelongsTo
     {
-        return $this->belongsTo(user::class, 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id');
     }
 }

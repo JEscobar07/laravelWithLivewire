@@ -35,7 +35,8 @@
                             {{-- <a href="{{ route('categories.show', $item->id) }}"
                                 class="text-blue-600 hover:text-blue-800">Detalles</a> --}}
 
-                            <a href="" class="text-indigo-600 hover:text-indigo-800 ml-4" >Editar</a>
+                            <a href="{{route('tasks.edit', $item->id)}}" class="text-indigo-600 hover:text-indigo-800 ml-4" >Editar</a>
+                            
                             {{-- <!-- Enlace para editar -->
                             <a href="{{ route('categories.edit', $item->id) }}"
                                 class="text-indigo-600 hover:text-indigo-800 ml-4">Editar</a> --}}

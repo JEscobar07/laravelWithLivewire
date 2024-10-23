@@ -19,6 +19,8 @@
         </div>
     </div>
 
+    <a href="{{route('tasks.index')}}" class="text-blue-600 hover:text-blue-800 ml-4">Taks del {{Auth::user()->name}}</a>
+
     <div class="flex flex-col items-center gap-3">
         <table class="w-2/4 text-left table-auto min-w-max">
             <thead>

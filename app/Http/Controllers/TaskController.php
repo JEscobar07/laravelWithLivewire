@@ -19,7 +19,7 @@ class TaskController extends Controller
         $user = Auth::user()->name;
 
         // Pasamos las categorías a la vista 'categories.index'
-        return view('tasks.index', compact('tasks','user'));
+        return view('tasks.index', compact('tasks', 'user'));
     }
 
     /**
@@ -27,7 +27,7 @@ class TaskController extends Controller
      */
     public function create()
     {
-        //
+        return view('tasks.create');
     }
 
     /**
@@ -35,7 +35,15 @@ class TaskController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validateData = $request->validate([
+            "title" => "required|max:255",
+            "description" => "required|max:255"
+        ]);
+
+        // Agregar el user_id del usuario autenticado
+        $validateData['user_id'] = auth()->user()->id;
+        Task::create($validateData);
+        return redirect()->route("tasks.index")->with('success', 'Tarea creada con éxito.');
     }
 
     /**
@@ -53,7 +61,7 @@ class TaskController extends Controller
     public function edit(int $id)
     {
         $task = Task::find($id);
-        return view('tasks.edit',compact('task'));
+        return view('tasks.edit', compact('task'));
     }
 
     /**
@@ -65,10 +73,11 @@ class TaskController extends Controller
         $task = Task::findOrFail($id);
         $task->update(
             [
-            "title" => $request->title,
-            "description" => $request->description
-        ]);
-        
+                "title" => $request->title,
+                "description" => $request->description
+            ]
+        );
+
         return redirect()->route("tasks.index")->with('success', 'Task actualizada con éxito.');
     }
 

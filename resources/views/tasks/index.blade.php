@@ -1,13 +1,19 @@
 @extends('layouts.personal')
 
 @section('content')
+    @if (session('success'))
+        <div class="bg-green-500 text-white p-4 rounded mb-4 shadow">
+            {{ session('success') }}
+        </div>
+    @endif
+
+
     <div class="container mx-auto py-8">
         <h1 class="text-3xl font-bold text-center text-gray-800 mb-6">Lista de tareas del usuario {{ $user }}</h1>
 
         <div class="flex justify-end mb-4">
-            <a href="" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Nueva tarea</a>
-            {{-- <a href="{{ route('categories.create') }}"
-            class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Nueva Categoría</a> --}}
+            <a href="{{ route('tasks.create') }}" class="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600">Nueva
+                tarea</a>
         </div>
 
         <div class="bg-white shadow-md rounded-lg overflow-hidden">

@@ -12,7 +12,7 @@ class Task extends Model
     protected $table = "tasks";
     // Define qué campos se pueden llenar automáticamente
     protected $fillable = [
-        "name",
+        "title",
         "description",
         "user_id"
     ];

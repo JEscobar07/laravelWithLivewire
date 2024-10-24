@@ -41,9 +41,10 @@ class TaskController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(int $id)
     {
-        //
+        $tasks = Task::find($id);
+        return view('tasks.show', compact('tasks'));
     }
 
     /**
@@ -74,8 +75,10 @@ class TaskController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(string $id)
+    public function destroy(int $id)
     {
-        //
+        $task = Task::find($id);
+        $task->delete();
+        return redirect()->route("tasks.index")->with('success', 'Task eliminada con exito.');
     }
 }
